@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Lentes de Sol</title>
+    <link rel="stylesheet" href="lente.css">
+</head>
+<body>
+
+    <!-- Checkboxes de control de estado -->
+    <input type="checkbox" id="cart-check" class="selector-carrito">
+    <input type="checkbox" id="modal-check" class="selector-modal">
+
+    <!-- Botón flotante del carrito -->
+    <label for="cart-check" class="boton-flotante-carrito">
+        🛒 Carrito (<span id="contador-carrito">0</span>)
+    </label>
+
+    <header>
+        <h1>Catálogo de Lentes de Sol</h1>
+        <p class="subtitulo">Disfruta del día al 100% 😎</p>
+    </header>
+
+    <!-- Contenedor general -->
+    <main class="contenedor">
+        <div class="rejilla" id="contenedor-productos"></div>
+    </main>
+
+    <!-- Overlay y Panel Lateral del Carrito -->
+    <label for="cart-check" class="capa-oscura"></label>
+    <aside class="panel-carrito">
+        <div class="cabecera-carrito">
+            <h3>Tu Carrito</h3>
+            <label for="cart-check" class="boton-cerrar">&times;</label>
+        </div>
+
+        <div class="elementos-carrito" id="elementos-carrito"></div>
+
+        <div class="pie-carrito">
+            <div class="total-carrito">
+                <strong>Total:</strong> S/. <span id="monto-total">0.00</span>
+            </div>
+            <!-- Botón cambiado-->
+            <button type="button" class="boton-procesar" id="btn-proceder" onclick="abrirPreRegistro()">Proceder al Pre-Registro</button>
+        </div>
+    </aside>
+
+    <!-- Registro y Confirmación de Éxito -->
+    <label for="modal-check" class="capa-oscura-modal"></label>
+    <div class="modal">
+        <div class="cabecera-modal">
+            <h3 id="titulo-modal">Pre-Registro de Compra</h3>
+            <button type="button" class="boton-cerrar" onclick="cerrarTodo()">&times;</button>
+        </div>
+        
+        <form id="form-compra" class="cuerpo-modal" onsubmit="finalizarCompra(event)">
+            <p>Ingresa tus datos para completar tu pedido:</p>
+
+            <div class="grupo-formulario">
+                <label>Nombre completo:</label>
+                <input type="text" placeholder="Ej. Juan Pérez" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label>Correo electrónico:</label>
+                <input type="email" placeholder="correo@ejemplo.com" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label>Teléfono / WhatsApp:</label>
+                <input type="tel" placeholder="987 654 321" required>
+            </div>
+
+            <!-- Selección de tarjeta de pago -->
+            <div class="grupo-formulario">
+                <label>Método de pago:</label>
+                <select id="metodo-pago" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="visa">Visa</option>
+                    <option value="bbva">BBVA</option>
+                    <option value="pago-seguro">Pago Seguro</option>
+                </select>
+            </div>
+
+            <!-- Datos de la tarjeta -->
+            <div class="grupo-formulario">
+                <label>Número de tarjeta:</label>
+                <input type="text" maxlength="19" placeholder="0000 0000 0000 0000" required>
+            </div>
+
+            <!-- Total a pagar-->
+            <div class="contenedor-total-modal">
+                <span>Total a pagar:</span>
+                <strong class="total-verde">S/. <span id="monto-total-modal">0.00</span></strong>
+            </div>
+
+            <button type="submit" class="boton-enviar">Confirmar Registro</button>
+        </form>
+
+        <div class="tarjeta-exito" id="tarjeta-exito" style="display: none;">
+            <h2>Compra realizada con Éxito 😎</h2>
+            <p>Que tenga un deslumbrante día</p>
+            <div class="icono-circulo-azul">✓</div>
+            <button type="button" class="boton-cerrar-exito" onclick="cerrarTodo()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="lente.js"></script>
+</body>
+</html>
